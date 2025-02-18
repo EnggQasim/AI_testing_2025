@@ -1,0 +1,22 @@
+[project]
+name = "pr1"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Sir Qasim", email = "m.qasim077@gmail.com" }
+]
+requires-python = ">=3.8"
+dependencies = [
+    "litellm>=1.61.8",
+    "pytest>=8.3.4",
+]
+
+[project.scripts]
+pr1 = "pr1:main"
+pr1-nc = "pr1:run_test_generator_main"
+pr1-fun1 = "pr1:fun1"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

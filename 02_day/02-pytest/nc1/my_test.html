@@ -1,0 +1,35 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.8.20, pytest-8.3.4, pluggy-1.5.0 -- /Users/m.qasim/Desktop/Nescom/AI_testing_2025/AI_testing_2025/02_day/02-pytest/nc1/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /Users/m.qasim/Desktop/Nescom/AI_testing_2025/AI_testing_2025/02_day/02-pytest/nc1
+configfile: pyproject.toml
+collecting ... collected 14 items
+
+test_sample.py::test_my_sum PASSED                                       [  7%]
+tests/test_calculator.py::test_add FAILED                                [ 14%]
+tests/test_calculator.py::test_subtract PASSED                           [ 21%]
+tests/test_calculator.py::test_multiply PASSED                           [ 28%]
+tests/test_calculator.py::test_divide PASSED                             [ 35%]
+tests/test_calculator.py::test_divide_by_zero PASSED                     [ 42%]
+tests/test_calculator.py::test_power PASSED                              [ 50%]
+tests/test_human.py::test_human_initialization PASSED                    [ 57%]
+tests/test_human.py::test_get_bmi PASSED                                 [ 64%]
+tests/test_human.py::test_is_adult PASSED                                [ 71%]
+tests/test_human.py::test_introduce PASSED                               [ 78%]
+tests/test_human.py::test_celebrate_birthday PASSED                      [ 85%]
+tests/test_human.py::test_invalid_height PASSED                          [ 92%]
+tests/test_human.py::test_invalid_weight PASSED                          [100%]
+
+=================================== FAILURES ===================================
+___________________________________ test_add ___________________________________
+
+    def test_add():
+>       assert add(3, 3) == 5
+E       assert 6 == 5
+E        +  where 6 = add(3, 3)
+
+tests/test_calculator.py:5: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_calculator.py::test_add - assert 6 == 5
+ +  where 6 = add(3, 3)
+========================= 1 failed, 13 passed in 0.02s =========================

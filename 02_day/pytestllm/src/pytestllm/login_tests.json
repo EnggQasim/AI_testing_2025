@@ -1,0 +1,37 @@
+[
+    {
+        "input": {
+            "username": "admin",
+            "password": "admin"
+        },
+        "expected_output": true
+    },
+    {
+        "input": {
+            "username": "wrong",
+            "password": "wrong"
+        },
+        "expected_output": false
+    },
+    {
+        "input": {
+            "username": "admin",
+            "password": "wrong"
+        },
+        "expected_output": false
+    },
+    {
+        "input": {
+            "username": "wrong",
+            "password": "admin"
+        },
+        "expected_output": false
+    },
+    {
+        "input": {
+            "username": "",
+            "password": ""
+        },
+        "expected_output": false
+    }
+]
