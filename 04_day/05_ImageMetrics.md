@@ -110,4 +110,4 @@ This code calculates the marginal distribution, computes the KL divergence for e
 
 ---
 
-This simple example shows the mechanics behind the Inception Score and how it quantifies the quality and diversity of a set of generated images.
+This simple example shows the mechanics behind the Inception Score and how it quantifies the quality and diversity of a set of generated images..
