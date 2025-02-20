@@ -1,0 +1,36 @@
+```python
+from typing import Union
+
+def add_numbers(num1: Union[int, float], num2: Union[int, float]) -> Union[int, float]:
+    """
+    This function adds two numbers together.
+
+    Args:
+        num1: The first number.  Can be an integer or a float.
+        num2: The second number. Can be an integer or a float.
+
+    Returns:
+        The sum of the two numbers.  Will be an integer if both inputs are integers, 
+        otherwise will be a float.  Returns None if either input is not a number.
+
+    Raises:
+        TypeError: If either input is not an int or float.
+
+    """
+    if not isinstance(num1,(int,float)) or not isinstance(num2,(int,float)):
+        raise TypeError("Inputs must be integers or floats.")
+    return num1 + num2
+
+
+#Example usage
+print(add_numbers(5,3)) # Output: 8
+print(add_numbers(5.2,3.7)) # Output: 8.9
+print(add_numbers(5,3.0)) # Output: 8.0
+
+#Example of error handling.
+try:
+    print(add_numbers("five",3))
+except TypeError as e:
+    print(f"Error: {e}") #Output: Error: Inputs must be integers or floats.
+
+```

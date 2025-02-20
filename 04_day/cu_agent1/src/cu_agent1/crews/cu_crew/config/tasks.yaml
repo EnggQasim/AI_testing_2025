@@ -1,0 +1,4 @@
+write_code:
+  description: "Write code to solve the problem"
+  expected_output: "A working code solution"
+  agent: code_writer
