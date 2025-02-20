@@ -1,3 +1,6 @@
+https://chatgpt.com/share/67b6c8a2-f748-8007-8100-bb596ceb1d72
+
+
 Here's a simple Python example using the BERTScore library to compare an LLM-generated output with an expected (reference) output:
 
 ```python
