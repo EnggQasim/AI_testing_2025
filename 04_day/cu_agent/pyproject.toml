@@ -1,0 +1,20 @@
+[project]
+name = "cu-agent"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Sir Qasim", email = "m.qasim077@gmail.com" }
+]
+requires-python = ">=3.8"
+dependencies = [
+    "crewai",
+    "crewai-tools",
+]
+
+[project.scripts]
+cu-agent = "cu_agent:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
