@@ -1,0 +1,21 @@
+[project]
+name = "llm_tool_call"
+version = "0.1.0"
+description = "llm_tool_call using crewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<3.13"
+dependencies = [
+    "crewai[tools]>=0.102.0,<1.0.0",
+]
+
+[project.scripts]
+kickoff = "llm_tool_call.main:kickoff"
+plot = "llm_tool_call.main:plot"
+run_crew = "llm_tool_call.main1:run_crew"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.crewai]
+type = "flow"

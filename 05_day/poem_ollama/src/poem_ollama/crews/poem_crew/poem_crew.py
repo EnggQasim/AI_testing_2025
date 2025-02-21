@@ -24,12 +24,6 @@ class PoemCrew:
             config=self.agents_config["poem_writer"],
         )
 
-    @agent
-    def poem_writer1(self) -> Agent:
-        return Agent(
-            config=self.agents_config["poem_writer1"],
-        )
-
     # To learn more about structured task outputs,
     # task dependencies, and task callbacks, check out the documentation:
     # https://docs.crewai.com/concepts/tasks#overview-of-a-task
@@ -37,12 +31,6 @@ class PoemCrew:
     def write_poem(self) -> Task:
         return Task(
             config=self.tasks_config["write_poem"],
-        )
-    
-    @task
-    def write_poem1(self) -> Task:
-        return Task(
-            config=self.tasks_config["write_poem1"],
         )
 
     @crew
@@ -57,4 +45,3 @@ class PoemCrew:
             process=Process.sequential,
             verbose=True,
         )
-/Users/m.qasim/Desktop/PIAIC/learn-applied-generative-ai-fundamentals/06_crew_ai

@@ -1,14 +1,22 @@
-from crewai import Agent, Crew, Process, Task
+from crewai import Agent, Crew, Process, Task, LLM
 from crewai.project import CrewBase, agent, crew, task
 
 # If you want to run a snippet of code before or after the crew starts,
 # you can use the @before_kickoff and @after_kickoff decorators
 # https://docs.crewai.com/concepts/crews#example-crew-class-with-decorators
+model1 = "gemini/gemini-1.5-flash"
+llm2 = LLM(model=model1)
+
+llm1 = LLM(model="ollama/deepseek-r1:1.5b",
+           base_url="http://localhost:11434")
+
+llm3 = LLM(model="gemini/gemini-2.0-flash-exp")
 
 
 @CrewBase
-class PoemCrew:
+class NcCrew:
     """Poem Crew"""
+    
 
     # Learn more about YAML configuration files here:
     # Agents: https://docs.crewai.com/concepts/agents#yaml-configuration-recommended
@@ -19,30 +27,34 @@ class PoemCrew:
     # If you would lik to add tools to your crew, you can learn more about it here:
     # https://docs.crewai.com/concepts/agents#agent-tools
     @agent
-    def poem_writer(self) -> Agent:
+    def code_writer(self) -> Agent:
         return Agent(
-            config=self.agents_config["poem_writer"],
-        )
+            config=self.agents_config["code_writer"],
+            llm=llm2
 
+        )
+    
     @agent
-    def poem_writer1(self) -> Agent:
+    def code_reviewer(self) -> Agent:
         return Agent(
-            config=self.agents_config["poem_writer1"],
+            config=self.agents_config["code_reviewer"],
+            llm=llm3
+
         )
 
     # To learn more about structured task outputs,
     # task dependencies, and task callbacks, check out the documentation:
     # https://docs.crewai.com/concepts/tasks#overview-of-a-task
     @task
-    def write_poem(self) -> Task:
+    def write_code(self) -> Task:
         return Task(
-            config=self.tasks_config["write_poem"],
+            config=self.tasks_config["code_writing"],
         )
     
     @task
-    def write_poem1(self) -> Task:
+    def review_code(self) -> Task:
         return Task(
-            config=self.tasks_config["write_poem1"],
+            config=self.tasks_config["code_reviewing"],
         )
 
     @crew
@@ -57,4 +69,3 @@ class PoemCrew:
             process=Process.sequential,
             verbose=True,
         )
-/Users/m.qasim/Desktop/PIAIC/learn-applied-generative-ai-fundamentals/06_crew_ai
