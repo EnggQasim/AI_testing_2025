@@ -22,7 +22,7 @@ This repository contains a series of experiments and tests on AI models. Organiz
 
 The repository is organized as follows:
 
-- **00_uv/**: Initial experiments, setup configurations, and exploratory tests.
+- **00_uv/**: UV python package, Cursor ai, Initial experiments, setup configurations, and exploratory tests.
 - **01_day/**: Day 1 experiments focusing on baseline model evaluations.
 - **02_day/**: Day 2 experiments emphasizing model fine-tuning techniques.
 - **03_day/**: Day 3 experiments on data preprocessing and augmentation.
