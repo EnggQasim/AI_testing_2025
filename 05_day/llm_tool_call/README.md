@@ -1,56 +1,90 @@
-# {{crew_name}} Crew
+# LLM Tool Call Example
 
-Welcome to the {{crew_name}} Crew project, powered by [crewAI](https://crewai.com). This template is designed to help you set up a multi-agent AI system with ease, leveraging the powerful and flexible framework provided by crewAI. Our goal is to enable your agents to collaborate effectively on complex tasks, maximizing their collective intelligence and capabilities.
+This project demonstrates how to use CrewAI to create an agent that can perform tool calls using Large Language Models (LLMs).
 
-## Installation
+## Overview
 
-Ensure you have Python >=3.10 <3.13 installed on your system. This project uses [UV](https://docs.astral.sh/uv/) for dependency management and package handling, offering a seamless setup and execution experience.
+The code implements a simple example where an AI agent uses a tool to add two numbers (3 and 7). This showcases the basic structure of tool calling in CrewAI.
 
-First, if you haven't already, install uv:
+## Code Structure
 
-```bash
-pip install uv
+The implementation is divided into several key components:
+
+### 1. Tool Definition
+```python
+@tool("add two numbers")
+def my_tool(num1: int, num2: int) -> int:
+    """This tool is used to add two numbers"""
+    return num1 + num2
+```
+- Defines a simple tool that adds two numbers
+- Uses the `@tool` decorator to register it with CrewAI
+- Takes two integers as input and returns their sum
+
+### 2. ToolCallerCrew Class
+```python
+@CrewBase
+class ToolCallerCrew:
+    def tool_caller_agent(self) -> Agent:
+        # Defines the agent with its role and tools
+    
+    def tool_caller_task(self) -> Task:
+        # Defines the task for the agent
+    
+    @crew
+    def crew(self) -> Crew:
+        # Creates and configures the crew
+```
+- Main class that orchestrates the tool calling process
+- Uses `@CrewBase` decorator for CrewAI integration
+- Contains methods for agent, task, and crew configuration
+
+### 3. CrewRunner Class
+```python
+class CrewRunner(Flow):
+    @start()
+    def start(self):
+        crew = ToolCallerCrew().crew().kickoff()
+        return crew.raw
+```
+- Handles the execution flow of the crew
+- Uses CrewAI's Flow system for orchestration
+- Returns the raw results from the crew execution
+
+### 4. Run Function
+```python
+def run_crew():
+    runner = CrewRunner()
+    result = runner.kickoff()
+    print(result)
+```
+- Entry point for executing the tool call
+- Creates a CrewRunner instance and starts the process
+- Prints the final result
+
+## How to Run
+
+1. Make sure you have the required dependencies installed:
+   ```bash
+   pip install crewai
+   ```
+
+2. Run the script using:
+   ```bash
+   uv run run_crew
+   ```
+   Where `run_crew = "llm_tool_call.main1:run_crew"`
+
+## Expected Output
+
+The script will output:
+```
+The sum of 3 and 7 is 10
 ```
 
-Next, navigate to your project directory and install the dependencies:
+## Note
 
-(Optional) Lock the dependencies and install them by using the CLI command:
-```bash
-crewai install
-```
-
-### Customizing
-
-**Add your `OPENAI_API_KEY` into the `.env` file**
-
-- Modify `src/llm_tool_call/config/agents.yaml` to define your agents
-- Modify `src/llm_tool_call/config/tasks.yaml` to define your tasks
-- Modify `src/llm_tool_call/crew.py` to add your own logic, tools and specific args
-- Modify `src/llm_tool_call/main.py` to add custom inputs for your agents and tasks
-
-## Running the Project
-
-To kickstart your crew of AI agents and begin task execution, run this from the root folder of your project:
-
-```bash
-crewai run
-```
-
-This command initializes the llm_tool_call Crew, assembling the agents and assigning them tasks as defined in your configuration.
-
-This example, unmodified, will run the create a `report.md` file with the output of a research on LLMs in the root folder.
-
-## Understanding Your Crew
-
-The llm_tool_call Crew is composed of multiple AI agents, each with unique roles, goals, and tools. These agents collaborate on a series of tasks, defined in `config/tasks.yaml`, leveraging their collective skills to achieve complex objectives. The `config/agents.yaml` file outlines the capabilities and configurations of each agent in your crew.
-
-## Support
-
-For support, questions, or feedback regarding the {{crew_name}} Crew or crewAI.
-
-- Visit our [documentation](https://docs.crewai.com)
-- Reach out to us through our [GitHub repository](https://github.com/joaomdmoura/crewai)
-- [Join our Discord](https://discord.com/invite/X4JWnZnxPb)
-- [Chat with our docs](https://chatg.pt/DWjSBZn)
-
-Let's create wonders together with the power and simplicity of crewAI.
+- The code uses CrewAI's decorators (`@CrewBase`, `@crew`, `@start`) for proper integration
+- The agent is configured to be a helpful assistant focused on adding numbers
+- The process runs sequentially as specified by `Process.sequential`
+- Warning messages about missing config files are normal and don't affect functionality
